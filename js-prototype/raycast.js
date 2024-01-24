@@ -46,7 +46,11 @@ class Player {
         this.rotationSpeed = 2 * (Math.PI / 180); // 2 deg per frame
     }
     update() {
-        // ...
+        this.rotationAngle += this.turnDirection * this.rotationSpeed;
+
+        var moveStep = this.walkDirection * this.moveSpeed;
+        this.x += Math.cos(this.rotationAngle) * moveStep;
+        this.y += Math.sin(this.rotationAngle) * moveStep;
     }
     render() {
         noStroke();
