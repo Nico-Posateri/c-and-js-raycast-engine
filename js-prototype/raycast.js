@@ -46,7 +46,7 @@ class Player {
         this.rotationSpeed = 2 * (Math.PI / 180); // 2 deg per frame
     }
     update() {
-        console.log(turnDirection);
+        console.log(this.turnDirection);
     }
     render() {
         fill("red");
