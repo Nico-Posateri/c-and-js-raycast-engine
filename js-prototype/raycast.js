@@ -46,11 +46,18 @@ class Player {
         this.rotationSpeed = 2 * (Math.PI / 180); // 2 deg per frame
     }
     update() {
-        console.log(this.turnDirection);
+        // ...
     }
     render() {
+        noStroke();
         fill("red");
         circle(this.x, this.y, this.radius);
+        stroke("red");
+        line(
+            this.x,
+            this.y,
+            this.x + Math.cos(this.rotationAngle) * 20,
+            this.y + Math.sin(this.rotationAngle) * 20
     }
 }
 
