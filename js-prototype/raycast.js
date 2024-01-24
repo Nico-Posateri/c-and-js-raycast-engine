@@ -39,14 +39,14 @@ class Player {
         this.x = WINDOW_WIDTH / 2;
         this.y = WINDOW_HEIGHT / 2;
         this.radius = 3;
-        this.turnDirection = 0;    // Left = -1, Right = 1
-        this.walkDirection = 0;    // Down = -1, Up = 1
+        this.turnDirection = 0;    // Left = -1, Right = +1
+        this.walkDirection = 0;    // Down = -1, Up = +1
         this.rotationAngle = Math.PI / 2; // Pi = 180 deg, divided by 2 is 90 deg
         this.moveSpeed = 2.0;     // 2 pixels per frame
         this.rotationSpeed = 2 * (Math.PI / 180); // 2 deg per frame
     }
     update() {
-        // Update player position based on turnDirection and walkDirection
+        console.log(turnDirection);
     }
     render() {
         fill("red");
@@ -56,6 +56,30 @@ class Player {
 
 var grid = new Map();
 var player = new Player();
+
+function keyPressed() {
+    if (keyCode == UP_ARROW) {
+        player.walkDirection = +1;
+    } else if (keyCode == DOWN_ARROW) {
+        player.walkDirection = -1;
+    } else if (keyCode == RIGHT_ARROW) {
+        player.turnDirection = +1;
+    } else if (keyCode == LEFT_ARROW) {
+        player.turnDirection = -1;
+    }
+}
+
+function keyReleased() {
+    if (keyCode == UP_ARROW) {
+        player.walkDirection = 0;
+    } else if (keyCode == DOWN_ARROW) {
+        player.walkDirection = 0;
+    } else if (keyCode == RIGHT_ARROW) {
+        player.turnDirection = 0;
+    } else if (keyCode == LEFT_ARROW) {
+        player.turnDirection = 0;
+    }
+}
 
 function setup() {
     createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
