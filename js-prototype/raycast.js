@@ -34,17 +34,39 @@ class Map {
     }
 }
 
+class Player {
+    constructor() {
+        this.x = WINDOW_WIDTH / 2;
+        this.y = WINDOW_HEIGHT / 2;
+        this.radius = 3;
+        this.turnDirection = 0;    // Left = -1, Right = 1
+        this.walkDirection = 0;    // Down = -1, Up = 1
+        this.rotationAngle = Math.PI / 2; // Pi = 180 deg, divided by 2 is 90 deg
+        this.moveSpeed = 2.0;     // 2 pixels per frame
+        this.rotationSpeed = 2 * (Math.PI / 180); // 2 deg per frame
+    }
+    update() {
+        // Update player position based on turnDirection and walkDirection
+    }
+    render() {
+        fill("red");
+        circle(this.x, this.y, this.radius);
+    }
+}
+
 var grid = new Map();
+var player = new Player();
 
 function setup() {
     createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
 function update() {
-    // Update all game objects before next frame renders
+    player.update();
 }
 
 function draw() {
     update();
     grid.render();
+    player.render();
 }
