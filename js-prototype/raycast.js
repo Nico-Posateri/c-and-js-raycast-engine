@@ -58,6 +58,7 @@ class Player {
             this.y,
             this.x + Math.cos(this.rotationAngle) * 20,
             this.y + Math.sin(this.rotationAngle) * 20
+            );
     }
 }
 
