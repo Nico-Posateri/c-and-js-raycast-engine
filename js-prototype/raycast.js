@@ -21,7 +21,7 @@ class Map {
             [1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-        ]
+        ];
     }
     hasWallAt(x, y) {
         if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT) {
@@ -76,8 +76,8 @@ class Player {
         line(
             this.x,
             this.y,
-            this.x + Math.cos(this.rotationAngle) * 20,
-            this.y + Math.sin(this.rotationAngle) * 20
+            this.x + Math.cos(this.rotationAngle) * 30,
+            this.y + Math.sin(this.rotationAngle) * 30
             );
     }
 }
@@ -131,7 +131,8 @@ function castAllRays() {
     var rayAngle = player.rotationAngle - (FOV_ANGLE / 2);
     rays = [];
     // Loop all columns casting the  rays
-    for (var i = 0; i < NUM_RAYS; i++) {
+    // for (var i = 0; i < NUM_RAYS; i++) {
+    for (var i = 0; i < 1; i++) {
         var ray = new Ray(rayAngle);
         // ray.cast();
         rays.push(ray);
