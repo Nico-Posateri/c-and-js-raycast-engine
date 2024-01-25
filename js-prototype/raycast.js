@@ -4,7 +4,7 @@ const MAP_NUM_COLS = 15;
 const WINDOW_WIDTH = MAP_NUM_COLS * TILE_SIZE;
 const WINDOW_HEIGHT = MAP_NUM_ROWS * TILE_SIZE;
 const FOV_ANGLE = 60 * (Math.PI / 180);
-const WALL_STRIP_WIDTH = 20;
+const WALL_STRIP_WIDTH = 1; // Increase value to reduce ray density
 const NUM_RAYS = WINDOW_WIDTH / WALL_STRIP_WIDTH;
 
 class Map {
@@ -54,7 +54,7 @@ class Player {
         this.walkDirection = 0;    // Down = -1, Up = +1
         this.rotationAngle = Math.PI / 2; // Pi = 180 deg, divided by 2 is 90 deg
         this.moveSpeed = 2.0;     // 2 pixels per frame
-        this.rotationSpeed = 3 * (Math.PI / 180); // 2 deg per frame
+        this.rotationSpeed = 2 * (Math.PI / 180); // 2 deg per frame
     }
     update() {
         this.rotationAngle += this.turnDirection * this.rotationSpeed;
@@ -62,7 +62,7 @@ class Player {
         var newPlayerX = this.x + Math.cos(this.rotationAngle) * moveStep;
         var newPlayerY = this.y + Math.sin(this.rotationAngle) * moveStep;
 
-        // Set new player position if they aare not colliding with a wall tile
+        // Set new player position if they are not colliding with a wall tile
         if (!grid.hasWallAt(newPlayerX, newPlayerY)) {
             this.x = newPlayerX;
             this.y = newPlayerY;
@@ -113,12 +113,9 @@ class Ray {
         var nextHorzTouchX = xintercept;
         var nextHorzTouchY = yintercept;
 
-        if (this.isRayFacingUp)
-            nextHorzTouchY--;
-
         // Increment xstep and ystep until a wall is found
         while (nextHorzTouchX >= 0 && nextHorzTouchX <= WINDOW_WIDTH && nextHorzTouchY >= 0 && nextHorzTouchY <= WINDOW_HEIGHT) {
-            if (grid.hasWallAt(nextHorzTouchX, nextHorzTouchY)) {
+            if (grid.hasWallAt(nextHorzTouchX, nextHorzTouchY - this.isRayFacingUp ? 1 : 0)) {
                 foundHorzWallHit = true;
                 horzWallHitX = nextHorzTouchX;
                 horzWallHitY = nextHorzTouchY;
@@ -151,12 +148,9 @@ class Ray {
         var nextVertTouchX = xintercept;
         var nextVertTouchY = yintercept;
 
-        if (this.isRayFacingLeft)
-            nextVertTouchX--;
-
         // Increment xstep and ystep until a wall is found
         while (nextVertTouchX >= 0 && nextVertTouchX <= WINDOW_WIDTH && nextVertTouchY >= 0 && nextVertTouchY <= WINDOW_HEIGHT) {
-            if (grid.hasWallAt(nextVertTouchX, nextVertTouchY)) {
+            if (grid.hasWallAt(nextVertTouchX - this.isRayFaacingLeft ? 1 : 0, nextVertTouchY)) {
                 foundVertWallHit = true;
                 vertWallHitX = nextVertTouchX;
                 vertWallHitY = nextVertTouchY;
@@ -182,7 +176,7 @@ class Ray {
             
     }
     render() {
-        stroke("rgba(255, 0, 0, 0.5)");
+        stroke("rgba(255, 0, 0, 0.3)");
         line(
             player.x,
             player.y,
