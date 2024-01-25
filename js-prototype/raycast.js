@@ -87,7 +87,7 @@ class Ray {
         this.rayAngle = rayAngle;
     }
     render() {
-        stroke("rgba(255, 0, 0, 0.3");
+        stroke("rgba(255, 0, 0, 0.3)");
         line(
             player.x,
             player.y,
