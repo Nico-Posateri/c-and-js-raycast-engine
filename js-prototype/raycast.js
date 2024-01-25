@@ -189,7 +189,7 @@ class Ray {
             
     }
     render() {
-        stroke("rgba(255, 0, 0, 0.3)");
+        stroke("rgba(255, 0, 0, 0.5)");
         line(
             player.x,
             player.y,
@@ -233,8 +233,7 @@ function castAllRays() {
     var rayAngle = player.rotationAngle - (FOV_ANGLE / 2);
     rays = [];
     // Loop all columns casting the  rays
-    // for (var i = 0; i < NUM_RAYS; i++) {
-    for (var i = 0; i < 1; i++) {
+    for (var i = 0; i < NUM_RAYS; i++) {
         var ray = new Ray(rayAngle);
         ray.cast(columnId);
         rays.push(ray);
