@@ -182,7 +182,7 @@ class Ray {
             
     }
     render() {
-        stroke("rgba(255, 0, 0, 0.3)");
+        stroke("rgba(255, 0, 0, 1)");
         line(
             player.x,
             player.y,
