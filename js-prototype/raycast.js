@@ -97,6 +97,10 @@ class Ray {
         var xintercept, yintercept;
         var xstep, ystep;
         // HORIZONTAL RAY-GRID INTERSECTION CODE
+        var foundHorzWallHit = false;
+        var wallHitX = 0;
+        var wallHitY = 0;
+        
         // Finds the y-coord. of the closest horizontal grid intersection
         yintercept = Math.floor(player.y / TILE_SIZE) * TILE_SIZE;
         yintercept += this.isRayFacingDown ? TILE_SIZE : 0;
@@ -108,6 +112,27 @@ class Ray {
         xstep = TILE_SIZE / Math.tan(this.rayAngle);
         xstep *= (this.isRayFacingLeft && xstep > 0) ? -1 : 1;
         xstep *= (this.isRayFacingRight && xstep < 0) ? -1 : 1;
+
+        var nextHorzTouchX = xintercept;
+        var nextHorzTouchY = yintercept;
+
+        if (this.isRayFacingUp)
+            nextHorzTouchY--;
+
+        // Increment xstep and ystep until a wall is found
+        while (nextHorzTouchX >= 0 && nextHorzTouchX <= WINDOW_WIDTH && nextHorzTouchY >= 0 && nextHorzTouchY <= WINDOW_HEIGHT) {
+            if (grid.hasWallAt(nextHorzTouchX, nextHorzTouchY)) {
+                foundHorzWallHit = true;
+                wallHitX = nextHorzTouchX;
+                wallHitY = nextHorzTouchY;
+                stroke("red");
+                line(player.x, player.y, wallHitX, wallHitY);
+                break;
+            } else {
+                nextHorzTouchX += xstep;
+                nextHorzTouchY += ystep;
+            }
+        }
     }
     render() {
         stroke("rgba(255, 0, 0, 0.3)");
@@ -180,7 +205,7 @@ function setup() {
 
 function update() {
     player.update();
-    castAllRays();
+    // castAllRays();
 }
 
 function draw() {
@@ -190,4 +215,6 @@ function draw() {
         ray.render();
     }
     player.render();
+
+    castAllRays(); // To be removed
 }
