@@ -4,7 +4,7 @@ const MAP_NUM_COLS = 15;
 const WINDOW_WIDTH = MAP_NUM_COLS * TILE_SIZE;
 const WINDOW_HEIGHT = MAP_NUM_ROWS * TILE_SIZE;
 const FOV_ANGLE = 60 * (Math.PI / 180);
-const WALL_STRIP_WIDTH = 1;
+const WALL_STRIP_WIDTH = 30;
 const NUM_RAYS = WINDOW_WIDTH / WALL_STRIP_WIDTH;
 
 class Map {
@@ -87,7 +87,7 @@ class Ray {
         this.rayAngle = rayAngle;
     }
     render() {
-        stroke("orange");
+        stroke("rgba(255, 0, 0, 0.3");
         line(
             player.x,
             player.y,
@@ -154,8 +154,8 @@ function update() {
 function draw() {
     update();
     grid.render();
-    player.render();
     for (ray of rays) {
         ray.render();
     }
+    player.render();
 }
