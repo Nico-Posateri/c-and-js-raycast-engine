@@ -84,7 +84,7 @@ class Player {
 
 class Ray {
     constructor(rayAngle) {
-        this.rayAngle = rayAngle;
+        this.rayAngle = normalizeAngle(rayAngle);
     }
     render() {
         stroke("rgba(255, 0, 0, 0.3)");
@@ -141,6 +141,10 @@ function castAllRays() {
 
         columnId++;
     }
+}
+
+function normalizeAngle(angle) {
+    angle = angle % (2 * Math.PI);
 }
 
 function setup() {
