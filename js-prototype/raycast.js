@@ -68,7 +68,18 @@ class Player {
             this.y = newPlayerY;
         }
     }
-
+    render() {
+        noStroke();
+        fill("red");
+        circle(this.x, this.y, this.radius);
+        stroke("red");
+        line(
+            this.x,
+            this.y,
+            this.x + Math.cos(this.rotationAngle) * 20,
+            this.y + Math.sin(this.rotationAngle) * 20
+            );
+    }
 }
 
 class Ray {
