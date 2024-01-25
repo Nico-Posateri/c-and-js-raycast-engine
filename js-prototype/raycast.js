@@ -252,6 +252,26 @@ function castAllRays() {
     }
 }
 
+function render3DProjectedWalls() {
+    // Loop every ray in the array of rays
+    for (var i = 0; i < NUM_RAYS; i++) {
+        var ray = rays[i];
+        var rayDistance = ray.distance;
+        // Calculate the distance to the projection plane
+        var distanceProjectionPlane = (WINDOW_WIDTH / 2) / Math.tan(FOV_ANGLE / 2);
+        // Projected wall height
+        var wallStripHeight = (TILE_SIZE / rayDistance) * distanceProjectionPlane;
+        fill("rgba(255, 255, 255, 1.0)");
+        noStroke();
+        rect(
+            i * WALL_STRIP_WIDTH,
+            (WINDOW_HEIGHT / 2) - (wallStripHeight / 2),
+            WALL_STRIP_WIDTH,
+            wallStripHeight
+        );
+    }
+}
+
 function distanceBetweenPoints(x1, y1, x2, y2) {
     return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
@@ -266,7 +286,9 @@ function update() {
 }
 
 function draw() {
+    clear("#212121");
     update();
+    render3DProjectedWalls();
     grid.render();
     for (ray of rays) {
         ray.render();
