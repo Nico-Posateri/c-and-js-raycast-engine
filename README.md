@@ -1,6 +1,6 @@
 # Raycasting Game Engine
 
-A raycasting game engine, built with C and prototyped in JavaScript, capable of building games in the style of Wolfenstein 3D.
+A raycasting game engine capable of building games in the style of Wolfenstein 3D.
 
 <Engine in action .gif>
 
