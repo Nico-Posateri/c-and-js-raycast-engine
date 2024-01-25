@@ -4,7 +4,7 @@ const MAP_NUM_COLS = 15;
 const WINDOW_WIDTH = MAP_NUM_COLS * TILE_SIZE;
 const WINDOW_HEIGHT = MAP_NUM_ROWS * TILE_SIZE;
 const FOV_ANGLE = 60 * (Math.PI / 180);
-const WALL_STRIP_WIDTH = 30;
+const WALL_STRIP_WIDTH = 1;
 const NUM_RAYS = WINDOW_WIDTH / WALL_STRIP_WIDTH;
 
 class Map {
@@ -203,6 +203,14 @@ var grid = new Map();
 var player = new Player();
 var rays = [];
 
+function normalizeAngle(angle) {    // Keeps the angle normalized, i.e. between 0 and 360 deg
+    angle = angle % (2 * Math.PI);
+    if (angle < 0 ) {
+        angle = (2 * Math.PI) + angle;
+    }
+    return angle;
+}
+
 function keyPressed() {
     if (keyCode == UP_ARROW) {
         player.walkDirection = +1;
@@ -242,14 +250,6 @@ function castAllRays() {
 
         columnId++;
     }
-}
-
-function normalizeAngle(angle) {    // Keeps the angle normalized, i.e. between 0 and 360 deg
-    angle = angle % (2 * Math.PI);
-    if (angle < 0 ) {
-        angle = (2 * Math.PI) + angle;
-    }
-    return angle;
 }
 
 function distanceBetweenPoints(x1, y1, x2, y2) {
