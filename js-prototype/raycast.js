@@ -88,6 +88,7 @@ class Ray {
         this.wallHitX = 0;
         this.wallHitY = 0;
         this.distance = 0;
+        this.wasHitVertical = false;
         this.isRayFacingDown = this.rayAngle > 0 && this.rayAngle < Math.PI;
         this.isRayFacingUp = !this.isRayFacingDown;
         this.isRayFacingRight = this.rayAngle < 0.5 * Math.PI || this.rayAngle > 1.5 * Math.PI;
@@ -96,10 +97,13 @@ class Ray {
     cast(columnId) {
         var xintercept, yintercept;
         var xstep, ystep;
+
+        ////////////////////////////////////////
         // HORIZONTAL RAY-GRID INTERSECTION CODE
+        ////////////////////////////////////////
         var foundHorzWallHit = false;
-        var wallHitX = 0;
-        var wallHitY = 0;
+        var horzWallHitX = 0;
+        var horzWallHitY = 0;
         
         // Finds the y-coord. of the closest horizontal grid intersection
         yintercept = Math.floor(player.y / TILE_SIZE) * TILE_SIZE;
@@ -123,24 +127,74 @@ class Ray {
         while (nextHorzTouchX >= 0 && nextHorzTouchX <= WINDOW_WIDTH && nextHorzTouchY >= 0 && nextHorzTouchY <= WINDOW_HEIGHT) {
             if (grid.hasWallAt(nextHorzTouchX, nextHorzTouchY)) {
                 foundHorzWallHit = true;
-                wallHitX = nextHorzTouchX;
-                wallHitY = nextHorzTouchY;
-                stroke("red");
-                line(player.x, player.y, wallHitX, wallHitY);
+                horzWallHitX = nextHorzTouchX;
+                horzWallHitY = nextHorzTouchY;
                 break;
             } else {
                 nextHorzTouchX += xstep;
                 nextHorzTouchY += ystep;
             }
         }
+
+        ////////////////////////////////////////
+        // VERTICAL RAY-GRID INTERSECTION CODE
+        ////////////////////////////////////////
+        var foundVertWallHit = false;
+        var vertWallHitX = 0;
+        var vertWallHitY = 0;
+        
+        // Finds the x-coord. of the closest vertical grid intersection
+        xintercept = Math.floor(player.x / TILE_SIZE) * TILE_SIZE;
+        xintercept += this.isRayFacingRight ? TILE_SIZE : 0;
+        // Finds the y-coord. of the closest vertical grid intersection
+        yintercept = player.y + (xintercept - player.x) * Math.tan(this.rayAngle);
+        // Calculate increment for xstep and ystep
+        xstep = TILE_SIZE;
+        xstep *= this.isRayFacingLeft ? -1 : 1;
+        ystep = TILE_SIZE / Math.tan(this.rayAngle);
+        ystep *= (this.isRayFacingUp && ystep > 0) ? -1 : 1;
+        ystep *= (this.isRayFacingDown && ystep < 0) ? -1 : 1;
+
+        var nextVertTouchX = xintercept;
+        var nextVertTouchY = yintercept;
+
+        if (this.isRayFacingLeft)
+            nextVertTouchX--;
+
+        // Increment xstep and ystep until a wall is found
+        while (nextVertTouchX >= 0 && nextVertTouchX <= WINDOW_WIDTH && nextVertTouchY >= 0 && nextVertTouchY <= WINDOW_HEIGHT) {
+            if (grid.hasWallAt(nextVertTouchX, nextVertTouchY)) {
+                foundVertWallHit = true;
+                vertWallHitX = nextVertTouchX;
+                vertWallHitY = nextVertTouchY;
+                break;
+            } else {
+                nextVertTouchX += xstep;
+                nextVertTouchY += ystep;
+            }
+        }
+
+        // Calculate horizontal and vertical distances, choose the smallest value
+        var horzHitDistance = (foundHorzWallHit)
+            ? distanceBetweenPoints(player.x, player.y, horzWallHitX, horzWallHitY)
+            : Number.MAX_VALUE;
+        var vertHitDistance = (foundVertWallHit)
+            ? distanceBetweenPoints(player.x, player.y, vertWallHitX, vertWallHitY)
+            : Number.MAX_VALUE;
+        // Store only the smallest distance
+        this.wallHitX = (horzHitDistance < vertHitDistance) ? horzWallHitX : vertWallHitX;
+        this.wallHitY = (horzHitDistance < vertHitDistance) ? horzWallHitY : vertWallHitY;
+        this.distance = (horzHitDistance < vertHitDistance) ? horzHitDistance : vertHitDistance;
+        this.waasHitVertical = (vertHitDistance < horzHitDistance);
+            
     }
     render() {
         stroke("rgba(255, 0, 0, 0.3)");
         line(
             player.x,
             player.y,
-            player.x + Math.cos(this.rayAngle) * 30,
-            player.y + Math.sin(this.rayAngle) * 30
+            this.wallHitX,
+            this.wallHitY
         );
     }
 }
@@ -199,13 +253,17 @@ function normalizeAngle(angle) {    // Keeps the angle normalized, i.e. between 
     return angle;
 }
 
+function distanceBetweenPoints(x1, y1, x2, y2) {
+    return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+
 function setup() {
     createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
 function update() {
     player.update();
-    // castAllRays();
+    castAllRays();
 }
 
 function draw() {
@@ -215,6 +273,4 @@ function draw() {
         ray.render();
     }
     player.render();
-
-    castAllRays(); // To be removed
 }
