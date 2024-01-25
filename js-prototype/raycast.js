@@ -4,7 +4,7 @@ const MAP_NUM_COLS = 15;
 const WINDOW_WIDTH = MAP_NUM_COLS * TILE_SIZE;
 const WINDOW_HEIGHT = MAP_NUM_ROWS * TILE_SIZE;
 const FOV_ANGLE = 60 * (Math.PI / 180);
-const WALL_STRIP_WIDTH = 1;
+const WALL_STRIP_WIDTH = 20;
 const NUM_RAYS = WINDOW_WIDTH / WALL_STRIP_WIDTH;
 
 class Map {
@@ -54,7 +54,7 @@ class Player {
         this.walkDirection = 0;    // Down = -1, Up = +1
         this.rotationAngle = Math.PI / 2; // Pi = 180 deg, divided by 2 is 90 deg
         this.moveSpeed = 2.0;     // 2 pixels per frame
-        this.rotationSpeed = 2 * (Math.PI / 180); // 2 deg per frame
+        this.rotationSpeed = 3 * (Math.PI / 180); // 2 deg per frame
     }
     update() {
         this.rotationAngle += this.turnDirection * this.rotationSpeed;
@@ -72,13 +72,6 @@ class Player {
         noStroke();
         fill("red");
         circle(this.x, this.y, this.radius);
-        /*stroke("red");
-        line(
-            this.x,
-            this.y,
-            this.x + Math.cos(this.rotationAngle) * 30,
-            this.y + Math.sin(this.rotationAngle) * 30
-            );*/
     }
 }
 
@@ -185,7 +178,7 @@ class Ray {
         this.wallHitX = (horzHitDistance < vertHitDistance) ? horzWallHitX : vertWallHitX;
         this.wallHitY = (horzHitDistance < vertHitDistance) ? horzWallHitY : vertWallHitY;
         this.distance = (horzHitDistance < vertHitDistance) ? horzHitDistance : vertHitDistance;
-        this.waasHitVertical = (vertHitDistance < horzHitDistance);
+        this.wasHitVertical = (vertHitDistance < horzHitDistance);
             
     }
     render() {
