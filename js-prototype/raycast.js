@@ -4,7 +4,7 @@ const MAP_NUM_COLS = 15;
 const WINDOW_WIDTH = MAP_NUM_COLS * TILE_SIZE;
 const WINDOW_HEIGHT = MAP_NUM_ROWS * TILE_SIZE;
 const FOV_ANGLE = 60 * (Math.PI / 180);
-const WALL_STRIP_WIDTH = 1;
+const WALL_STRIP_WIDTH = 10;
 const NUM_RAYS = WINDOW_WIDTH / WALL_STRIP_WIDTH;
 const MINIMAP_SCALE_FACTOR = 0.2;
 
@@ -261,7 +261,10 @@ function render3DProjectedWalls() {
         var distanceProjectionPlane = (WINDOW_WIDTH / 2) / Math.tan(FOV_ANGLE / 2);
         // Projected wall height
         var wallStripHeight = (TILE_SIZE / correctWallDistance) * distanceProjectionPlane;
-        fill("rgba(255, 255, 255, 1.0)");
+        // Compute transparency based on wall distance
+        var alpha = 170 / correctWallDistance;
+        // Render a rectangle with the calculated wall height
+        fill("rgba(255, 255, 255, " + alpha +")");
         noStroke();
         rect(
             i * WALL_STRIP_WIDTH,
