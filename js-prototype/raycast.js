@@ -70,7 +70,7 @@ class Player {
         var newPlayerX = this.x + Math.cos(this.rotationAngle) * moveStep;
         var newPlayerY = this.y + Math.sin(this.rotationAngle) * moveStep;
 
-        // Set new player position if they aare not colliding with a wall tile
+        // Set new player position if they are not colliding with a wall tile
         if (!grid.hasWallAt(newPlayerX, newPlayerY)) {
             this.x = newPlayerX;
             this.y = newPlayerY;
