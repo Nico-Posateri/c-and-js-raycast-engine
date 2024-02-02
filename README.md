@@ -7,7 +7,7 @@ A raycasting game engine capable of building games in the style of *Wolfenstein 
 > The C engines are not yet properly optimized for building a complete game.
 
 ## Directory Information
-A future folder titled **c-rcu-engine** will contain an improved C raycasting engine with custom textures for demo.
+A future folder titled **c-rcu-engine** will contain an improved C raycasting engine with custom textures and sprites for demo.
 
 The **c-rc-engine** folder contains the complete raycasting engine built with C. This engine uses [SDL2](https://github.com/libsdl-org/SDL/releases/tag/release-2.28.5), as well as textures and sprites from **id Software's** 1992 classic, *Wolfenstein 3D*. This engine attempts to closely emulate the original game's engine, with the support of SDL2.
 
