@@ -2,5 +2,5 @@
 
 This engine was built with C and SDL2, and attempted to remain faithful to *Wolfenstein 3D*.
 
-It features textures created by **id Software**.
+It features textures and sprites created by **id Software**.
 
