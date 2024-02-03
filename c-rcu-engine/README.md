@@ -1,8 +1,8 @@
-# C Raycasting Engine
+# C Raycasting Updated Engine
 
-This engine was built with C and SDL2, and attempted to remain faithful to Wolfenstein 3D.
+This engine was built with C and SDL2, and attempts to improve upon the version found in **c-rc-engine**.
 
-I intend to make a branch of this engine which, among other things, includes:
+I intend to implement the following features:
 - [ ] Textured floors
 - [ ] Textured ceilings
 - [ ] Title screen
