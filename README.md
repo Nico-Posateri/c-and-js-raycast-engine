@@ -8,7 +8,7 @@ A raycasting game engine inspired by *Wolfenstein 3D*, built with C and SDL.
 
 ## Directory Information
 
-The **c-rc-engine** folder contains the C raycasting engine. This engine uses [SDL2](https://github.com/libsdl-org/SDL/releases/tag/release-2.28.5) as well as [elanthis' upng](https://github.com/elanthis/upng), a png decoder for my custom textures created in Aseprite. This engine attempts to closely emulate *Wolfenstein 3D*'s engine with some improvements, including floor and ceiling textures.
+The **c-rc-engine** folder contains the C raycasting engine. This engine uses [SDL2](https://github.com/libsdl-org/SDL/releases/tag/release-2.28.5) as well as [elanthis' upng](https://github.com/elanthis/upng), a png decoder for my custom textures created in [Aseprite](https://www.aseprite.org/). This engine attempts to closely emulate *Wolfenstein 3D*'s engine with some improvements, including floor and ceiling textures.
 
 The **js-prototype** folder contains a prototype of the raycasting engine built with JavaScript, rendered in-browser.
 
