@@ -20,7 +20,7 @@ The **js-prototype** folder contains a prototype of the raycasting engine built 
 
 Again, the textures and sprites used in the **c-rc-engine** build were made by myself, using [Aseprite](https://www.aseprite.org/).
 
-![textures](https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/6b24a775-a481-4e16-a994-499841fa5db9)
+![textures](https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/36101add-106f-4fd3-b233-f6ad32c2b7f5)
 
 I started reminiscing about the Game Boy's dot-matrix display and the monochromatic green of early handheld gaming. I went in a slightly different direction, opting for a 1-bit palette of green and blue. I like the contrast and I feel that these two tones convey a similar feeling to that of the Game Boy's dot-matrix. However, I'm tempted to go back and make textures more reminiscent of the 1989 handheld console.
 
