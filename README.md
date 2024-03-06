@@ -2,7 +2,7 @@
 
 A raycasting game engine inspired by *Wolfenstein 3D*, built with C and SDL.
 
-![c-rc-engine](https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/841747f4-234a-4b19-8eb2-6cb34e028cd7)
+https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/4657643e-308a-4afb-afaf-4927182267db
 ![js-prototype](https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/f522b7d8-7144-4a0b-a7fa-3bf18a38a31e)
 > [!NOTE]
 > The C engine is not yet properly optimized for building a complete game.
