@@ -4,4 +4,4 @@ This engine was built with C, inspired by *Wolfenstein 3D*. It uses SDL2 and [el
 
 ![c-rc-engine](https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/0682c403-d53f-4048-96f8-47abbb89a055)
 
-<img src="[/images/output/video1.gif](https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/0682c403-d53f-4048-96f8-47abbb89a055)https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/0682c403-d53f-4048-96f8-47abbb89a055" width="1280" height="720"/>
+<img src="[/images/output/video1.gif](https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/0682c403-d53f-4048-96f8-47abbb89a055)" width="1280" height="720"/>
