@@ -5,7 +5,7 @@ A raycasting game engine inspired by *Wolfenstein 3D*, built with C and SDL.
 ![c-rc-engine](https://github.com/Nico-Posateri/c-and-js-raycast-engine/assets/141705409/6e380135-6da5-48dd-b00a-cd2172a54c26)
 > [!NOTE]
 > The C engine is not yet properly optimized for building a complete game.
-> I plan to add the following features soon:
+> I'd also like to add the following features:
 > - [ ] Textured floor and ceiling
 > - [ ] Distance fog
 > - [ ] Sprite animation
